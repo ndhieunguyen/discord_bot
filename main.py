@@ -30,7 +30,7 @@ if __name__ == '__main__':
     client = commands.Bot(command_prefix="!", intents=intents)
     chatbot = Chatbot(os.environ['poe_api_token'])
     
-    @client.command()
+    @client.command(name='q')
     async def query(ctx, *query):
         query = " ".join(query)
         await ctx.send(f"{chatbot.query_from_api(query=query)}")
