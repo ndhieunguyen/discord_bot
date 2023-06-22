@@ -7,7 +7,7 @@ from src.imagebot import Imagebot
 
 def main():
     intents = discord.Intents.default()
-    intents.message_content = True
+    # intents.message_content = True
     client = commands.Bot(command_prefix="!", intents=intents)
     chatbot = Chatbot(os.environ["poe_api_token"])
     imagebot = Imagebot(os.environ["replicate_api_token"])
