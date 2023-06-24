@@ -1,6 +1,6 @@
 import os
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 from src.chatbot import Chatbot
 from src.imagebot import Imagebot
 
@@ -15,17 +15,14 @@ def main():
     @client.command(name="q")
     async def q(ctx, *query):
         query = " ".join(query)
-        await ctx.send(f"{chatbot.query_from_api(query=query)}")
+        channel = client.get_channel(os.environ["channel_id"])
+        await channel.send(f"{chatbot.query_from_api(query=query)}")
 
     @client.command(name="gen")
     async def gen(ctx, *query):
         query = " ".join(query)
-        await ctx.send(imagebot.generate_image(query=query))
-
-    @tasks.loop(minutes=10)
-    async def hello():
-        channel = client.get_channel("1120930288328003716")
-        await channel.send("Hello")
+        channel = client.get_channel(os.environ["channel_id"])
+        await channel.send(imagebot.generate_image(query=query))
 
     client.run(os.environ["discord_token"])
 
