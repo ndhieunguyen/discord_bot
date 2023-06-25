@@ -15,14 +15,14 @@ def main():
     @client.command(name="q")
     async def q(ctx, *query):
         query = " ".join(query)
-        channel = client.get_channel(os.environ["channel_id"])
-        await channel.send(f"{chatbot.query_from_api(query=query)}")
+        # channel = client.get_channel(os.environ["channel_id"])
+        await ctx.send(f"{chatbot.query_from_api(query=query)}")
 
     @client.command(name="gen")
     async def gen(ctx, *query):
         query = " ".join(query)
-        channel = client.get_channel(os.environ["channel_id"])
-        await channel.send(imagebot.generate_image(query=query))
+        # channel = client.get_channel(os.environ["channel_id"])
+        await ctx.send(imagebot.generate_image(query=query))
 
     client.run(os.environ["discord_token"])
 
