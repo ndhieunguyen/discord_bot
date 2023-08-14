@@ -14,7 +14,6 @@ imagebot = Imagebot(os.environ["replicate_api_token"])
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
-    print("------")
 
 
 @bot.command(name="q")
@@ -27,6 +26,12 @@ async def q(ctx, *query):
 async def gen(ctx, *query):
     query = " ".join(query)
     await ctx.send(imagebot.generate_image(query=query))
+
+
+@bot.command(name="python")
+async def python(ctx, *query):
+    query = " ".join(query)
+    await ctx.send(f"{exec(query)}")
 
 
 bot.run(os.environ["discord_token"])
