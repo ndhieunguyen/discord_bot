@@ -34,4 +34,11 @@ async def python(ctx, *query):
     await ctx.send(f"{exec(query)}")
 
 
+@bot.command(name="")
+async def python(ctx, *query):
+    query = " ".join(query)
+    if "@everyone" in query or "@Nguyên" in query:
+        await ctx.send(f"ok m")
+
+
 bot.run(os.environ["discord_token"])
